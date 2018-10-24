@@ -1,6 +1,7 @@
 import hou
 fetches = []
-
+nodes = hou.selectedNodes()
+# print nodes
 # Create chopnet
 obj = hou.node("/obj")
 new_cam = obj.createNode("cam", "camera_morphing")
@@ -12,9 +13,9 @@ target.moveToGoodPosition()
 interp_node = ch.createNode("interp")
 
 # create fetches
-nodes = hou.selectedNodes()
 for i in nodes:
     if i.type().name() == "cam":
+        # print "cam"
         fnode = ch.createNode("fetch", i.type().name())
         fetches.append(fnode)
         fnode.moveToGoodPosition()
